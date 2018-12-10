@@ -22,8 +22,8 @@ exports.handler = function (event, context, callback) {
         // API call would go here
         // e.g. axios
         let data = {
-            "test": "just testing again",
-            "test2": 123,
+            "test": "Justin Test",
+            "test2": 123456,
             "isOK" : true
             // , "posted": somePostedData
         };
