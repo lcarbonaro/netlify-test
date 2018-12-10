@@ -2,6 +2,8 @@ exports.handler = function (event, context, callback) {
 
     //const {somePostedData} = JSON.parse(event.body);
 
+    const { SOME_API_KEY } = process.env;
+
     // send response
     // note data in passed on response body
     // note also headers 
@@ -24,7 +26,8 @@ exports.handler = function (event, context, callback) {
         let data = {
             "test": "Justin Test",
             "test2": 123456,
-            "isOK" : true
+            "isOK" : true,
+            "serverVar" : SOME_API_KEY
             // , "posted": somePostedData
         };
         send(data);
