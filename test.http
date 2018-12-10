@@ -2,5 +2,5 @@ POST http://localhost:9000/test
 Content-Type:  application/json 
 
 {
-  "somePostedData" : true
+  "somePostedData" : 22222
 } 
