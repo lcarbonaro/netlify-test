@@ -1,5 +1,12 @@
 const fetchData = async () =>
-    await (await fetch('http://localhost:9000/test')).json();
+    
+    // local testing
+    //await (await fetch('http://localhost:9000/test')).json();
+
+    // deployed testing
+    await (await fetch('/.netlify/functions/test')).json();
+
+    
 
 fetchData().then(data => {
     console.log(data);
