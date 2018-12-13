@@ -15,11 +15,12 @@ exports.handler = function (event, context, callback) {
                     const html = res.data;
                     const $ = cheerio.load(html);                    
 
-                    $('td#resultsCol').find('div.result').each(await function (i, elem) {
-                        let jt = $(this).find('a.jobtitle').text().trim();
-                        let jl = $(this).find('a.jobtitle').attr('href').trim();
+                    $('div.result','td#resultsCol').each(await function (i, elem) {
+                        let jt = $(this).find('a').text().trim();
+                        //let jl = $(this).find('a').attr('href').trim();
 
-                        console.log(`${i}-${jt}`);
+                        console.log(`[${i + 1}]${jt}`);
+
 
                     });
                   
