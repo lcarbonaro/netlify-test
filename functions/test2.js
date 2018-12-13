@@ -14,19 +14,23 @@ exports.handler = function (event, context, callback) {
                 if (res.status === 200) {
                     const html = res.data;
                     const $ = cheerio.load(html);                    
+                    let result = [];
 
                     $('div.result','td#resultsCol').each(await function (i, elem) {
-                        let jt = $(this).find('a').text().trim();
-                        //let jl = $(this).find('a').attr('href').trim();
+                        let rec = {}
+                        let jts = $(this).find('a'); 
+                        let jt = $(jts[0]).text().trim();
+                        let jl = 'https://www.indeed.ca' + $(jts[0]).attr('href').trim();
 
-                        console.log(`[${i + 1}]${jt}`);
+                        //console.log(`[${i + 1}]${jt}`);
 
+                        rec.jobTitle = jt;
+                        rec.jobLink = jl;
+                        result.push(rec);
 
                     });
                   
-                    send({
-                        "ok": "ok"
-                    });
+                    send(result);
                 }
 
 
