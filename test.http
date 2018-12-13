@@ -4,3 +4,7 @@ Content-Type:  application/json
 {
   "somePostedData" : 22222
 } 
+
+###
+
+GET http://localhost:9000/test2
