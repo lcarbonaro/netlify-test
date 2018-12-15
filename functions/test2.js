@@ -9,48 +9,27 @@ exports.handler = function (event, context, callback) {
     // then send it
     const test = () => {
         axios.get(url)
-            .then(async (res) => {
-                //console.log('dot then');
+            .then(async (res) => {                
                 if (res.status === 200) {
                     const html = res.data;
                     const $ = cheerio.load(html);                    
                     let result = [];
 
                     $('td#resultsCol div.result').each(await function (i, elem) {
-                        let rec = {}
-                         
-                        //console.log( $(this).attr('id') );
-
+                        let rec = {}                         
+                        let id = $(this).attr('id');
                         let jts = $(this).find('a'); 
                         let jt = $(jts[0]).text().trim();
                         let jl = 'https://www.indeed.ca' + $(jts[0]).attr('href').trim();
-
-                        let co = $(this).find('span.company a').text().trim(); 
-                       
-
-                        if(co === '') {
-                            console.log('retry1');
-                            let co = $(this).find('div.sjcl > div:nth-child(1) > span').text().trim(); 
-                        }
-                        if(co === '') {
-                            console.log('retry2');
-                            let co = $(this).find('div > div:nth-child(1) > span > a').text().trim(); 
-                        }
-                        if(co === '') {
-                            console.log('retry3');
-                            let co = $(this).find('div > div:nth-child(1) > span').text().trim(); 
-                        }
-                        
-                        console.log(`*${co}*`);
-
-
-                        let lo = $(this).find('div.location').text().trim(); 
+                        let co = $(`#${id} > div > div:nth-child(1) > span`).text().trim();
+                        let lo = $(`#${id} > div > span`).text().trim(); 
 
                         if(lo === '') {
-                            let lo = $(this).find('span.location').text().trim(); 
+                            console.log(`[${i + 1}]loc retry`);
+                            lo = $(`#${id} > div.sjcl > div.location`).text().trim(); 
                         }
 
-                        //console.log(`[${i + 1}]${jt} co:${co} lo:${lo}`);
+                        //console.log(`[${i + 1}]${jt} co:*${co}* lo:*${lo}*`);
 
                         rec.jobTitle = jt;
                         rec.jobLink = jl;
