@@ -2,7 +2,7 @@ POST http://localhost:9000/test
 Content-Type:  application/json 
 
 {
-  "somePostedData" : 22222
+  "payload" : {"someNum":123, "name":"fred"}
 } 
 
 ###
@@ -11,3 +11,15 @@ GET http://localhost:9000/test2
 
 ###
 
+
+
+GET https://test-lcarbonaro.netlify.com/.netlify/functions/test2
+
+###
+
+POST https://test-lcarbonaro.netlify.com/.netlify/functions/test
+Content-Type:  application/json 
+
+{
+  "payload" : [{"id":123, "name":"fred"}, {"id":456, "name":"jo"}]
+} 
