@@ -1,6 +1,6 @@
 exports.handler = function (event, context, callback) {
 
-    //const {somePostedData} = JSON.parse(event.body);
+    const {payload} = JSON.parse(event.body);
 
     const { SOME_API_KEY } = process.env;
 
@@ -24,11 +24,11 @@ exports.handler = function (event, context, callback) {
         // API call would go here
         // e.g. axios
         let data = {
-            "test": "Just Testing",
-            "test2": 123456,
+            "fld1": "Just Testing",
+            "fld2": 123456,
             "isOK" : true,
-            "serverVar" : SOME_API_KEY
-            // , "posted": somePostedData
+            "processEnvVar" : SOME_API_KEY,
+            "posted": payload
         };
         send(data);
     }
